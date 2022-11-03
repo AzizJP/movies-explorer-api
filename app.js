@@ -5,6 +5,7 @@ const mongoose = require('mongoose');
 const { errors } = require('celebrate');
 const helmet = require('helmet');
 const routes = require('./routes/index');
+const errorHandler = require('./middlewares/errorHandler');
 const { requestLogger, errorLogger } = require('./middlewares/logger');
 
 const { PORT = 3000 } = process.env;
@@ -22,8 +23,9 @@ app.use('/', routes);
 app.use(errorLogger);
 
 app.use(errors());
+app.use(errorHandler);
 
-mongoose.connect('mongodb://127.0.0.1:27017/bitfilmsdb');
+mongoose.connect('mongodb://127.0.0.1:27017/moviesdb');
 
 app.listen(PORT, () => {
   console.log(`App listening on port ${PORT}`);
