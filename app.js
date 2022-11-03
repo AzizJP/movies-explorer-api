@@ -4,7 +4,7 @@ const bodyParser = require('body-parser');
 const mongoose = require('mongoose');
 const { errors } = require('celebrate');
 const helmet = require('helmet');
-// const routes = require('./routes/index');
+const routes = require('./routes/index');
 const { requestLogger, errorLogger } = require('./middlewares/logger');
 
 const { PORT = 3000 } = process.env;
@@ -17,7 +17,7 @@ app.use(requestLogger);
 
 app.use(helmet());
 
-// app.use('/', routes);
+app.use('/', routes);
 
 app.use(errorLogger);
 
