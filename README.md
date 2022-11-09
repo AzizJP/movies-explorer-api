@@ -14,7 +14,7 @@
 **Ссылки**
 
 - [Ссылка на проект в GitHub](https://github.com/AzizJP/movies-explorer-api)
-- [Ссылка на домен по которому можно обратиться к серверу]()
+- [Ссылка на домен по которому можно обратиться к серверу](https://api.ajp.movies.explorer.nomoredomains.icu/) - https://api.ajp.movies.explorer.nomoredomains.icu/
 
 **Технологии применяемые в проекте**
 
