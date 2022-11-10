@@ -1,5 +1,6 @@
 const mongoose = require('mongoose');
-const { regexForUrl, regexForRuWords, regexForEnWords } = require('../utils/constants');
+const validator = require('validator');
+const { regexForIntegerNumber, regexForRuWords, regexForEnWords } = require('../utils/constants');
 
 const movieSchema = new mongoose.Schema({
   country: {
@@ -27,8 +28,9 @@ const movieSchema = new mongoose.Schema({
     required: true,
     validate: {
       validator(value) {
-        return regexForUrl.test(value);
+        return validator.isURL(value);
       },
+      message: 'Ссылка не валидна',
     },
   },
   trailerLink: {
@@ -36,8 +38,9 @@ const movieSchema = new mongoose.Schema({
     required: true,
     validate: {
       validator(value) {
-        return regexForUrl.test(value);
+        return validator.isURL(value);
       },
+      message: 'Ссылка не валидна',
     },
   },
   thumbnail: {
@@ -45,8 +48,9 @@ const movieSchema = new mongoose.Schema({
     required: true,
     validate: {
       validator(value) {
-        return regexForUrl.test(value);
+        return validator.isURL(value);
       },
+      message: 'Ссылка не валидна',
     },
   },
   owner: {
@@ -55,8 +59,14 @@ const movieSchema = new mongoose.Schema({
     required: true,
   },
   movieId: {
-    type: String,
+    type: Number,
     required: true,
+    validate: {
+      validator(value) {
+        return regexForIntegerNumber.test(value);
+      },
+      message: 'Число должно быть целым',
+    },
   },
   nameRU: {
     type: String,
@@ -65,6 +75,7 @@ const movieSchema = new mongoose.Schema({
       validator(value) {
         return regexForRuWords.test(value);
       },
+      message: 'Наименование должно быть на кириллице',
     },
   },
   nameEN: {
@@ -74,6 +85,7 @@ const movieSchema = new mongoose.Schema({
       validator(value) {
         return regexForEnWords.test(value);
       },
+      message: 'Наименование должно быть на латинице',
     },
   },
 });

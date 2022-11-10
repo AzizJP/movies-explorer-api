@@ -4,7 +4,6 @@ const {
   NOT_FOUND_MESSAGE_USER,
   BAD_REQUEST_MESSAGE_POST_USER,
   BAD_REQUEST_MESSAGE_UPDATE_USER,
-  BAD_REQUEST_MESSAGE_ID,
   CONFLICT_MESSAGE_USER,
 } = require('../errors/errorMessages');
 const NotFoundError = require('../errors/NotFoundError');
@@ -17,13 +16,7 @@ const { NODE_ENV, JWT_SECRET } = process.env;
 const getUserMe = (req, res, next) => User.findById(req.user._id)
   .orFail(() => next(new NotFoundError(NOT_FOUND_MESSAGE_USER)))
   .then((user) => res.send(user))
-  .catch((err) => {
-    if (err.name === 'CastError') {
-      next(new BadRequestError(BAD_REQUEST_MESSAGE_ID));
-    } else {
-      next(err);
-    }
-  });
+  .catch(next);
 
 const createUser = (req, res, next) => {
   const {

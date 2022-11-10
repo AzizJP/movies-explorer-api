@@ -56,7 +56,7 @@ const createMovie = (req, res, next) => {
     });
 };
 
-const deleteMovie = (req, res, next) => Movie.findById(req.params.movieId)
+const deleteMovie = (req, res, next) => Movie.findById(req.params.movieCardId)
   .orFail(() => next(new NotFoundError(NOT_FOUND_MESSAGE_MOVIE)))
   .then((movie) => {
     if (String(movie.owner) !== req.user._id) {

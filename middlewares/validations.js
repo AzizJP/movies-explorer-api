@@ -4,7 +4,7 @@ const signInJoiSchema = require('../JoiSchemas/signInJoiSchema');
 const signUpJoiSchema = require('../JoiSchemas/signUpJoiSchema');
 const userUpdateJoiSchema = require('../JoiSchemas/userUpdateJoiSchema');
 const createMovieJoiSchema = require('../JoiSchemas/createMovieJoiSchema');
-const movieIdJoiSchema = require('../JoiSchemas/movieIdJoiSchema');
+const movieCardIdJoiSchema = require('../JoiSchemas/movieCardIdJoiSchema');
 
 const validateSignUp = celebrate({
   body: signUpJoiSchema,
@@ -22,8 +22,8 @@ const validateMovieCreate = celebrate({
   body: createMovieJoiSchema,
 });
 
-const validateMovieId = celebrate({
-  params: movieIdJoiSchema,
+const validateMovieCardId = celebrate({
+  params: movieCardIdJoiSchema,
 });
 
 module.exports = {
@@ -31,5 +31,5 @@ module.exports = {
   validateSignIn,
   validateUserUpdate,
   validateMovieCreate,
-  validateMovieId,
+  validateMovieCardId,
 };
