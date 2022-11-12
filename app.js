@@ -17,6 +17,8 @@ app.use(bodyParser.urlencoded({ extended: true }));
 
 app.use(requestLogger);
 
+app.use(limiter);
+
 app.use(helmet());
 
 app.use('/', routes);
@@ -25,8 +27,6 @@ app.use(errorLogger);
 
 app.use(errors());
 app.use(errorHandler);
-
-app.use(limiter);
 
 mongoose.connect(NODE_ENV === 'production' ? MONGO_URI : 'mongodb://127.0.0.1:27017/moviesdb');
 
