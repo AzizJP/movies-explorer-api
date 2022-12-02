@@ -8,9 +8,12 @@ const routes = require('./routes/index');
 const errorHandler = require('./middlewares/errorHandler');
 const limiter = require('./middlewares/rateLimiter');
 const { requestLogger, errorLogger } = require('./middlewares/logger');
+const corsRequests = require('./middlewares/corsRequests');
 
 const { PORT = 4000, NODE_ENV, MONGO_URI } = process.env;
 const app = express();
+
+app.use(corsRequests);
 
 app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({ extended: true }));
